@@ -17,6 +17,7 @@
 		4F21723E2B2AC08F00D065A2 /* FetchingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21723D2B2AC08F00D065A2 /* FetchingError.swift */; };
 		4F2172422B2AC50800D065A2 /* GetCurrencyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172412B2AC50800D065A2 /* GetCurrencyEndpoint.swift */; };
 		4F2172452B2AC53C00D065A2 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172442B2AC53C00D065A2 /* BaseURL.swift */; };
+		4F2172482B2ACC2F00D065A2 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172472B2ACC2F00D065A2 /* WebService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		4F21723D2B2AC08F00D065A2 /* FetchingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingError.swift; sourceTree = "<group>"; };
 		4F2172412B2AC50800D065A2 /* GetCurrencyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrencyEndpoint.swift; sourceTree = "<group>"; };
 		4F2172442B2AC53C00D065A2 /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
+		4F2172472B2ACC2F00D065A2 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		4F1CF40E2B29875E002F1499 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				4F2172462B2ACC1800D065A2 /* Networking */,
 				4F2172432B2AC52D00D065A2 /* Namespace */,
 				4F2172402B2AC4ED00D065A2 /* Endpoint */,
 			);
@@ -157,6 +160,14 @@
 				4F2172442B2AC53C00D065A2 /* BaseURL.swift */,
 			);
 			path = Namespace;
+			sourceTree = "<group>";
+		};
+		4F2172462B2ACC1800D065A2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4F2172472B2ACC2F00D065A2 /* WebService.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F2172482B2ACC2F00D065A2 /* WebService.swift in Sources */,
 				4F21723E2B2AC08F00D065A2 /* FetchingError.swift in Sources */,
 				4F1CF3FD2B298472002F1499 /* ViewController.swift in Sources */,
 				4F2172422B2AC50800D065A2 /* GetCurrencyEndpoint.swift in Sources */,
