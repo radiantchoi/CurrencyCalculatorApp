@@ -12,14 +12,15 @@ final class CurrencyViewModel {
     private let useCase: CurrencyUseCase
     private var cancellables = Set<AnyCancellable>()
     
-    @Published private(set) var USDtoKRW: Double = 0
-    @Published private(set) var USDtoJPY: Double = 0
-    @Published private(set) var USDtoPHP: Double = 0
+    @Published private(set) var timestamp: String = ""
+    @Published private var USDtoKRW: Double = 0
+    @Published private var USDtoJPY: Double = 0
+    @Published private var USDtoPHP: Double = 0
     
     init(useCase: CurrencyUseCase = CurrencyUseCaseImpl()) {
         self.useCase = useCase
         
-        fetchCurrencyInfo()
+//        fetchCurrencyInfo()
     }
     
     func fetchCurrencyInfo() {
@@ -33,8 +34,7 @@ final class CurrencyViewModel {
                     print("Failure \(error)")
                 }
             }) {
-                print($0)
-                
+                self.timestamp = $0.timestamp.formatStamp()
                 self.USDtoKRW = $0.toKRW
                 self.USDtoJPY = $0.toJPY
                 self.USDtoPHP = $0.toPHP
