@@ -8,14 +8,34 @@
 import Combine
 import Foundation
 
+enum Country: String {
+    case korea = "한국"
+    case japan = "일본"
+    case philippines = "필리핀"
+    
+    var currency: String {
+        switch self {
+        case .korea:
+            return "KRW"
+        case .japan:
+            return "JPY"
+        case .philippines:
+            return "PHP"
+        }
+    }
+}
+
 final class CurrencyViewModel {
     private let useCase: CurrencyUseCase
     private var cancellables = Set<AnyCancellable>()
     
-    @Published private(set) var timestamp: String = "---"
     @Published private var USDtoKRW: Double = 0
     @Published private var USDtoJPY: Double = 0
     @Published private var USDtoPHP: Double = 0
+    
+    @Published private(set) var timestamp: String = "---"
+    @Published private(set) var selectedCountry: Country = .korea
+    @Published private(set) var selectedCurrency: Double = 0
     
     init(useCase: CurrencyUseCase = CurrencyUseCaseImpl()) {
         self.useCase = useCase

@@ -98,7 +98,6 @@ final class CurrencyViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         
-        label.text = "1300.00 (수정예정)"
         return label
     }()
     
@@ -176,8 +175,20 @@ final class CurrencyViewController: UIViewController {
     
     private func bindComponents() {
         viewModel.$timestamp
-            .sink {
-                self.dateLabel.text = $0
+            .sink { [weak self] timestamp in
+                self?.dateLabel.text = timestamp
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$selectedCountry
+            .sink { [weak self] country in
+                self?.receivingCountryLabel.text = "\(country.rawValue) (\(country.currency))"
+            }
+            .store(in: &cancellables)
+        
+        viewModel.$selectedCurrency
+            .sink { [weak self] rate in
+                self?.currencyLabel.text = String(rate)
             }
             .store(in: &cancellables)
     }
