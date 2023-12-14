@@ -12,6 +12,10 @@ final class CurrencyViewModel {
     private let useCase: CurrencyUseCase
     private var cancellables = Set<AnyCancellable>()
     
+    @Published private(set) var USDtoKRW: Double = 0
+    @Published private(set) var USDtoJPY: Double = 0
+    @Published private(set) var USDtoPHP: Double = 0
+    
     init(useCase: CurrencyUseCase = CurrencyUseCaseImpl()) {
         self.useCase = useCase
         
@@ -30,6 +34,10 @@ final class CurrencyViewModel {
                 }
             }) {
                 print($0)
+                
+                self.USDtoKRW = $0.toKRW
+                self.USDtoJPY = $0.toJPY
+                self.USDtoPHP = $0.toPHP
             }
             .store(in: &cancellables)
     }
