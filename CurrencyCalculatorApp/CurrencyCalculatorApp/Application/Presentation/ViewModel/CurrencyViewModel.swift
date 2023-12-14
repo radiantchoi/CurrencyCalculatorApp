@@ -29,12 +29,10 @@ final class CurrencyViewModel {
     private let useCase: CurrencyUseCase
     private var cancellables = Set<AnyCancellable>()
     
-    private var USDtoKRW: Double = 0
-    private var USDtoJPY: Double = 0
-    private var USDtoPHP: Double = 0
+    private var currencyInfo: Currency = Currency.example
     
     @Published private(set) var timestamp: String = "---"
-    @Published private(set) var selectedCountry: Country = .japan
+    @Published private(set) var selectedCountry: Country = .korea
     @Published private(set) var selectedCurrency: Double = 0
     
     init(useCase: CurrencyUseCase = CurrencyUseCaseImpl()) {
@@ -55,10 +53,8 @@ final class CurrencyViewModel {
                     print("Failure \(error)")
                 }
             }) {
+                self.currencyInfo = $0
                 self.timestamp = $0.timestamp.formatStamp()
-                self.USDtoKRW = $0.toKRW
-                self.USDtoJPY = $0.toJPY
-                self.USDtoPHP = $0.toPHP
                 
                 self.setSelectedCurrency(self.selectedCountry)
             }
@@ -76,11 +72,11 @@ final class CurrencyViewModel {
     private func setSelectedCurrency(_ country: Country) {
         switch country {
         case .korea:
-            selectedCurrency = USDtoKRW
+            selectedCurrency = currencyInfo.toKRW
         case .japan:
-            selectedCurrency = USDtoJPY
+            selectedCurrency = currencyInfo.toJPY
         case .philippines:
-            selectedCurrency = USDtoPHP
+            selectedCurrency = currencyInfo.toPHP
         }
     }
 }
