@@ -29,12 +29,12 @@ final class CurrencyViewModel {
     private let useCase: CurrencyUseCase
     private var cancellables = Set<AnyCancellable>()
     
-    @Published private var USDtoKRW: Double = 0
-    @Published private var USDtoJPY: Double = 0
-    @Published private var USDtoPHP: Double = 0
+    private var USDtoKRW: Double = 0
+    private var USDtoJPY: Double = 0
+    private var USDtoPHP: Double = 0
     
     @Published private(set) var timestamp: String = "---"
-    @Published private(set) var selectedCountry: Country = .korea
+    @Published private(set) var selectedCountry: Country = .japan
     @Published private(set) var selectedCurrency: Double = 0
     
     init(useCase: CurrencyUseCase = CurrencyUseCaseImpl()) {
@@ -67,8 +67,8 @@ final class CurrencyViewModel {
     
     private func bindCurrencyInfo() {
         $selectedCountry
-            .sink {
-                self.setSelectedCurrency($0)
+            .sink { [weak self] country in
+                self?.setSelectedCurrency(country)
             }
             .store(in: &cancellables)
     }
