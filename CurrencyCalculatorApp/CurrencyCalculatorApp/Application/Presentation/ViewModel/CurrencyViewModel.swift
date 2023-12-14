@@ -12,7 +12,7 @@ final class CurrencyViewModel {
     private let useCase: CurrencyUseCase
     private var cancellables = Set<AnyCancellable>()
     
-    @Published private(set) var timestamp: String = ""
+    @Published private(set) var timestamp: String = "---"
     @Published private var USDtoKRW: Double = 0
     @Published private var USDtoJPY: Double = 0
     @Published private var USDtoPHP: Double = 0
