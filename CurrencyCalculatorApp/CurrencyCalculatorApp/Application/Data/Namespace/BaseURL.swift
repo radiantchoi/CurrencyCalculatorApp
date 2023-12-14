@@ -6,5 +6,5 @@
 //
 
 enum BaseURL {
-    static let urlString = "http://apilayer.net/api/live"
+    static let urlString = "http://apilayer.net/api"
 }

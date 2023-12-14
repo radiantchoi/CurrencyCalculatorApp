@@ -8,13 +8,15 @@
 import Foundation
 
 enum GetCurrencyEndpoint: Endpoint {
+    case getRecentCurrency
+    
     var baseURL: URL? { URL(string: BaseURL.urlString) }
     
     var httpMethod: HTTPMethod { .GET }
     
     var headers: Headers { [:] }
     
-    var path: String { "" }
+    var path: String { "live" }
     
     var parameters: HTTPRequestParameter? {
         return .queries(
