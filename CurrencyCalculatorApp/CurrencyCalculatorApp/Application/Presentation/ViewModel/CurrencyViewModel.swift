@@ -40,10 +40,11 @@ final class CurrencyViewModel {
     init(useCase: CurrencyUseCase = CurrencyUseCaseImpl()) {
         self.useCase = useCase
         
-//        fetchCurrencyInfo()
+        bindCurrencyInfo()
+        fetchCurrencyInfo()
     }
     
-    func fetchCurrencyInfo() {
+    private func fetchCurrencyInfo() {
         useCase.getCurrencyInfo()
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: {
@@ -58,7 +59,28 @@ final class CurrencyViewModel {
                 self.USDtoKRW = $0.toKRW
                 self.USDtoJPY = $0.toJPY
                 self.USDtoPHP = $0.toPHP
+                
+                self.setSelectedCurrency(self.selectedCountry)
             }
             .store(in: &cancellables)
+    }
+    
+    private func bindCurrencyInfo() {
+        $selectedCountry
+            .sink {
+                self.setSelectedCurrency($0)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func setSelectedCurrency(_ country: Country) {
+        switch country {
+        case .korea:
+            selectedCurrency = USDtoKRW
+        case .japan:
+            selectedCurrency = USDtoJPY
+        case .philippines:
+            selectedCurrency = USDtoPHP
+        }
     }
 }
