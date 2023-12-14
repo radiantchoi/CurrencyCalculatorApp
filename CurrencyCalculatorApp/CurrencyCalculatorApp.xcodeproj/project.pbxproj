@@ -12,8 +12,11 @@
 		4F1CF3FD2B298472002F1499 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1CF3FC2B298472002F1499 /* ViewController.swift */; };
 		4F1CF4022B298473002F1499 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF4012B298473002F1499 /* Assets.xcassets */; };
 		4F1CF4052B298473002F1499 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F1CF4032B298473002F1499 /* LaunchScreen.storyboard */; };
-		4F1CF4132B29878F002F1499 /* RemoveMeDataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1CF4122B29878F002F1499 /* RemoveMeDataLayer.swift */; };
-		4F1CF4152B298797002F1499 /* RemoveMeDomainLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F1CF4142B298797002F1499 /* RemoveMeDomainLayer.swift */; };
+		4F2172372B2ABF7900D065A2 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172362B2ABF7900D065A2 /* Endpoint.swift */; };
+		4F21723C2B2ABFDE00D065A2 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21723B2B2ABFDE00D065A2 /* URL+.swift */; };
+		4F21723E2B2AC08F00D065A2 /* FetchingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21723D2B2AC08F00D065A2 /* FetchingError.swift */; };
+		4F2172422B2AC50800D065A2 /* GetCurrencyEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172412B2AC50800D065A2 /* GetCurrencyEndpoint.swift */; };
+		4F2172452B2AC53C00D065A2 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172442B2AC53C00D065A2 /* BaseURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +27,11 @@
 		4F1CF4012B298473002F1499 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F1CF4042B298473002F1499 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F1CF4062B298473002F1499 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F1CF4122B29878F002F1499 /* RemoveMeDataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveMeDataLayer.swift; sourceTree = "<group>"; };
-		4F1CF4142B298797002F1499 /* RemoveMeDomainLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveMeDomainLayer.swift; sourceTree = "<group>"; };
+		4F2172362B2ABF7900D065A2 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		4F21723B2B2ABFDE00D065A2 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
+		4F21723D2B2AC08F00D065A2 /* FetchingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchingError.swift; sourceTree = "<group>"; };
+		4F2172412B2AC50800D065A2 /* GetCurrencyEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrencyEndpoint.swift; sourceTree = "<group>"; };
+		4F2172442B2AC53C00D065A2 /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 				4F1CF4102B29876E002F1499 /* Domain */,
 				4F1CF40F2B298766002F1499 /* Presentation */,
 				4F1CF40E2B29875E002F1499 /* Data */,
+				4F2172382B2ABFA200D065A2 /* Utility */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -89,7 +96,8 @@
 		4F1CF40E2B29875E002F1499 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				4F1CF4122B29878F002F1499 /* RemoveMeDataLayer.swift */,
+				4F2172432B2AC52D00D065A2 /* Namespace */,
+				4F2172402B2AC4ED00D065A2 /* Endpoint */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -105,7 +113,7 @@
 		4F1CF4102B29876E002F1499 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				4F1CF4142B298797002F1499 /* RemoveMeDomainLayer.swift */,
+				4F21723F2B2AC4DF00D065A2 /* Error */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -116,6 +124,39 @@
 				4F1CF3FC2B298472002F1499 /* ViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4F2172382B2ABFA200D065A2 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				4F21723B2B2ABFDE00D065A2 /* URL+.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		4F21723F2B2AC4DF00D065A2 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				4F21723D2B2AC08F00D065A2 /* FetchingError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		4F2172402B2AC4ED00D065A2 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				4F2172362B2ABF7900D065A2 /* Endpoint.swift */,
+				4F2172412B2AC50800D065A2 /* GetCurrencyEndpoint.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		4F2172432B2AC52D00D065A2 /* Namespace */ = {
+			isa = PBXGroup;
+			children = (
+				4F2172442B2AC53C00D065A2 /* BaseURL.swift */,
+			);
+			path = Namespace;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,10 +229,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F21723E2B2AC08F00D065A2 /* FetchingError.swift in Sources */,
 				4F1CF3FD2B298472002F1499 /* ViewController.swift in Sources */,
-				4F1CF4132B29878F002F1499 /* RemoveMeDataLayer.swift in Sources */,
-				4F1CF4152B298797002F1499 /* RemoveMeDomainLayer.swift in Sources */,
+				4F2172422B2AC50800D065A2 /* GetCurrencyEndpoint.swift in Sources */,
+				4F21723C2B2ABFDE00D065A2 /* URL+.swift in Sources */,
 				4F1CF3F92B298472002F1499 /* AppDelegate.swift in Sources */,
+				4F2172372B2ABF7900D065A2 /* Endpoint.swift in Sources */,
+				4F2172452B2AC53C00D065A2 /* BaseURL.swift in Sources */,
 				4F1CF3FB2B298472002F1499 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
