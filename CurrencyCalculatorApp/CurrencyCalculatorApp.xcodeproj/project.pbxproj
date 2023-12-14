@@ -23,6 +23,7 @@
 		4F2172522B2AD1C300D065A2 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172512B2AD1C300D065A2 /* CurrencyViewModel.swift */; };
 		4F2172552B2AD22F00D065A2 /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172542B2AD22F00D065A2 /* CurrencyRepository.swift */; };
 		4F2172582B2AD27100D065A2 /* CurrencyRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172572B2AD27100D065A2 /* CurrencyRepositoryImpl.swift */; };
+		4F21725B2B2ADC5000D065A2 /* CurrencyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21725A2B2ADC5000D065A2 /* CurrencyUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		4F2172512B2AD1C300D065A2 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 		4F2172542B2AD22F00D065A2 /* CurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
 		4F2172572B2AD27100D065A2 /* CurrencyRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepositoryImpl.swift; sourceTree = "<group>"; };
+		4F21725A2B2ADC5000D065A2 /* CurrencyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		4F1CF4102B29876E002F1499 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				4F2172592B2ADC4400D065A2 /* UseCase */,
 				4F2172532B2AD22200D065A2 /* Repository */,
 				4F21724F2B2ACD6600D065A2 /* Model */,
 				4F21723F2B2AC4DF00D065A2 /* Error */,
@@ -225,6 +228,14 @@
 			path = RepositoryImplement;
 			sourceTree = "<group>";
 		};
+		4F2172592B2ADC4400D065A2 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				4F21725A2B2ADC5000D065A2 /* CurrencyUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -309,6 +320,7 @@
 				4F2172452B2AC53C00D065A2 /* BaseURL.swift in Sources */,
 				4F2172582B2AD27100D065A2 /* CurrencyRepositoryImpl.swift in Sources */,
 				4F1CF3FB2B298472002F1499 /* SceneDelegate.swift in Sources */,
+				4F21725B2B2ADC5000D065A2 /* CurrencyUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
