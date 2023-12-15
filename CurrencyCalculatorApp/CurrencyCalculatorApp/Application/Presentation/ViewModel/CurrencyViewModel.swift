@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-enum Country: String {
+enum Country: String, CaseIterable {
     case korea = "한국"
     case japan = "일본"
     case philippines = "필리핀"
@@ -59,6 +59,10 @@ final class CurrencyViewModel {
                 self.setSelectedCurrency(self.selectedCountry)
             }
             .store(in: &cancellables)
+    }
+    
+    func selectCountry(_ country: Country) {
+        selectedCountry = country
     }
     
     private func bindCurrencyInfo() {

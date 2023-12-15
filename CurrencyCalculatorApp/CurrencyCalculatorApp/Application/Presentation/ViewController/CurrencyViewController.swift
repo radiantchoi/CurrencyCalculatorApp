@@ -125,6 +125,14 @@ final class CurrencyViewController: UIViewController {
         return label
     }()
     
+    private lazy var selectCountryButton: UIButton = {
+        let button = UIButton(type: .roundedRect)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        button.setTitle("수취 국가 변경", for: .normal)
+        return button
+    }()
+    
     private let viewModel = CurrencyViewModel()
     private var cancellables = Set<AnyCancellable>()
     
@@ -133,6 +141,7 @@ final class CurrencyViewController: UIViewController {
         
         setupView()
         bindComponents()
+        setupActions()
     }
     
     private func setupView() {
@@ -141,6 +150,7 @@ final class CurrencyViewController: UIViewController {
         view.addSubview(sectionStackView)
         view.addSubview(contentStackView)
         view.addSubview(resultLabel)
+        view.addSubview(selectCountryButton)
         
         sectionStackView.addArrangedSubview(sendingSectionLabel)
         sectionStackView.addArrangedSubview(receivingSectionLabel)
@@ -171,6 +181,13 @@ final class CurrencyViewController: UIViewController {
         
         resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         resultLabel.topAnchor.constraint(equalTo: sectionStackView.bottomAnchor, constant: 64).isActive = true
+        
+        selectCountryButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        selectCountryButton.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: 32).isActive = true
+    }
+    
+    private func setupActions() {
+        selectCountryButton.addTarget(self, action: #selector(selectCountryButtonTapped), for: .touchUpInside)
     }
     
     private func bindComponents() {
@@ -191,5 +208,26 @@ final class CurrencyViewController: UIViewController {
                 self?.currencyLabel.text = String(rate)
             }
             .store(in: &cancellables)
+    }
+    
+    @objc func selectCountryButtonTapped() {
+        let actionSheet = UIAlertController(title: "수취 국가 선택", message: nil, preferredStyle: .actionSheet)
+        let selectKoreaAction = UIAlertAction(title: "대한민국", style: .default) { [weak self] _ in
+            self?.viewModel.selectCountry(.korea)
+        }
+        let selectJapanAction = UIAlertAction(title: "일본", style: .default) { [weak self] _ in
+            self?.viewModel.selectCountry(.japan)
+        }
+        let selectPhilippinesAction = UIAlertAction(title: "필리핀", style: .default) { [weak self] _ in
+            self?.viewModel.selectCountry(.philippines)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(selectKoreaAction)
+        actionSheet.addAction(selectJapanAction)
+        actionSheet.addAction(selectPhilippinesAction)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true, completion: nil)
     }
 }
