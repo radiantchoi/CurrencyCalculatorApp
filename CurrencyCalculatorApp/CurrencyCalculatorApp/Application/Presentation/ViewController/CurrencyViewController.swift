@@ -249,6 +249,14 @@ final class CurrencyViewController: UIViewController {
                 self?.resultLabel.textColor = .black
             }
             .store(in: &cancellables)
+        
+        viewModel.$fetchingError
+            .sink { [weak self] error in
+                if let error {
+                    self?.makeOKAlert(title: "Error!", message: error.localizedDescription)
+                }
+            }
+            .store(in: &cancellables)
     }
     
     @objc func selectCountryButtonTapped() {

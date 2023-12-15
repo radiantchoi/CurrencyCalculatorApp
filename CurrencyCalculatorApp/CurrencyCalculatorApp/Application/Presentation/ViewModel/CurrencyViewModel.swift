@@ -43,9 +43,11 @@ final class CurrencyViewModel {
         }
     }
     @Published private(set) var selectedCurrency: Double = 0
-    
+
     private var inputMoney: Double = 0
     @Published private(set) var sendingMoney: Sending = Sending(currency: "KRW", amount: 0)
+    
+    @Published private(set) var fetchingError: FetchingError? = nil
     
     init(useCase: CurrencyUseCase = CurrencyUseCaseImpl()) {
         self.useCase = useCase
@@ -57,12 +59,12 @@ final class CurrencyViewModel {
     private func fetchCurrencyInfo() {
         useCase.getCurrencyInfo()
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: {
-                switch $0 {
+            .sink(receiveCompletion: { [weak self] result in
+                switch result {
                 case .finished:
                     print("Finished")
                 case .failure(let error):
-                    print("Failure \(error)")
+                    self?.fetchingError = error
                 }
             }) {
                 self.currencyInfo = $0
