@@ -154,6 +154,8 @@ final class CurrencyViewController: UIViewController {
         return button
     }()
     
+    private lazy var tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    
     private let viewModel = CurrencyViewModel()
     private var cancellables = Set<AnyCancellable>()
     
@@ -188,6 +190,8 @@ final class CurrencyViewController: UIViewController {
         moneyStackView.addArrangedSubview(moneyInputTextField)
         moneyStackView.addArrangedSubview(moneyUnitLabel)
         
+        view.addGestureRecognizer(tapRecognizer)
+        
         setupConstraints()
     }
     
@@ -204,6 +208,7 @@ final class CurrencyViewController: UIViewController {
         contentStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         moneyStackView.widthAnchor.constraint(equalTo: contentStackView.widthAnchor).isActive = true
+        moneyStackView.heightAnchor.constraint(equalToConstant: 22).isActive = true
         moneyInputTextField.widthAnchor.constraint(equalTo: moneyStackView.widthAnchor, multiplier: 1/3).isActive = true
         moneyInputTextField.heightAnchor.constraint(equalToConstant: 22).isActive = true
         
@@ -267,5 +272,9 @@ final class CurrencyViewController: UIViewController {
         }
         
         viewModel.changeMoneyValue(number)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
