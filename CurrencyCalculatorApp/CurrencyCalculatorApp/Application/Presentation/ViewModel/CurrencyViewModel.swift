@@ -25,6 +25,11 @@ enum Country: String, CaseIterable {
     }
 }
 
+struct Sending {
+    let currency: String
+    let amount: Double
+}
+
 final class CurrencyViewModel {
     private let useCase: CurrencyUseCase
     private var cancellables = Set<AnyCancellable>()
@@ -32,15 +37,21 @@ final class CurrencyViewModel {
     private var currencyInfo: Currency = Currency.example
     
     @Published private(set) var timestamp: String = "---"
-    @Published private(set) var selectedCountry: Country = .korea
+    @Published private(set) var selectedCountry: Country = .korea {
+        didSet {
+            changeMoneyValue(inputMoney)
+        }
+    }
     @Published private(set) var selectedCurrency: Double = 0
-    @Published private(set) var sendingMoney: Double = 0
+    
+    private var inputMoney: Double = 0
+    @Published private(set) var sendingMoney: Sending = Sending(currency: "KRW", amount: 0)
     
     init(useCase: CurrencyUseCase = CurrencyUseCaseImpl()) {
         self.useCase = useCase
         
         bindCurrencyInfo()
-//        fetchCurrencyInfo()
+        fetchCurrencyInfo()
     }
     
     private func fetchCurrencyInfo() {
@@ -95,8 +106,9 @@ final class CurrencyViewModel {
         return number
     }
     
-    func changeInputValue(_ value: Double) {
-        let newSendingMoney = round(selectedCurrency * value * 100) / 100
-        sendingMoney = newSendingMoney
+    func changeMoneyValue(_ value: Double) {
+        inputMoney = value
+        let newSendingMoneyAmount = round(selectedCurrency * inputMoney * 100) / 100
+        sendingMoney = Sending(currency: selectedCountry.currency, amount: newSendingMoneyAmount)
     }
 }

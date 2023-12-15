@@ -240,7 +240,7 @@ final class CurrencyViewController: UIViewController {
         
         viewModel.$sendingMoney
             .sink { [weak self] money in
-                
+                self?.resultLabel.text = "수취금액은 \(money.amount) \(money.currency) 입니다."
                 self?.resultLabel.textColor = .black
             }
             .store(in: &cancellables)
@@ -261,10 +261,11 @@ final class CurrencyViewController: UIViewController {
     
     @objc func moneyInputTextFieldDidChanged() {
         guard let number = viewModel.verifyInputValue(moneyInputTextField.text) else {
-            // 레이블 조정
+            resultLabel.text = "송금액이 바르지 않습니다."
+            resultLabel.textColor = .red
             return
         }
         
-        viewModel.changeInputValue(number)
+        viewModel.changeMoneyValue(number)
     }
 }
