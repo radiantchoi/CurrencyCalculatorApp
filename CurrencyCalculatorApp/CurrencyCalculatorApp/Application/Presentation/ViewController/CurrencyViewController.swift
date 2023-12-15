@@ -108,6 +108,35 @@ final class CurrencyViewController: UIViewController {
         return label
     }()
     
+    private lazy var moneyStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView.axis = .horizontal
+        stackView.alignment = .leading
+        stackView.spacing = 8
+        return stackView
+    }()
+    
+    private lazy var moneyInputTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        textField.addDoneCancelToolbar()
+        textField.borderStyle = .line
+        textField.keyboardType = .decimalPad
+        textField.textAlignment = .right
+        return textField
+    }()
+    
+    private lazy var moneyUnitLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        label.text = "USD"
+        return label
+    }()
+    
     private lazy var moneyLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -162,7 +191,11 @@ final class CurrencyViewController: UIViewController {
         contentStackView.addArrangedSubview(receivingCountryLabel)
         contentStackView.addArrangedSubview(currencyLabel)
         contentStackView.addArrangedSubview(dateLabel)
-        contentStackView.addArrangedSubview(moneyLabel)
+        //        contentStackView.addArrangedSubview(moneyLabel)
+        contentStackView.addArrangedSubview(moneyStackView)
+        
+        moneyStackView.addArrangedSubview(moneyInputTextField)
+        moneyStackView.addArrangedSubview(moneyUnitLabel)
         
         setupConstraints()
     }
@@ -179,6 +212,10 @@ final class CurrencyViewController: UIViewController {
         contentStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75).isActive = true
         contentStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
+        moneyStackView.widthAnchor.constraint(equalTo: contentStackView.widthAnchor).isActive = true
+        moneyInputTextField.widthAnchor.constraint(equalTo: moneyStackView.widthAnchor, multiplier: 1/3).isActive = true
+        moneyInputTextField.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        
         resultLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         resultLabel.topAnchor.constraint(equalTo: sectionStackView.bottomAnchor, constant: 64).isActive = true
         
@@ -187,6 +224,7 @@ final class CurrencyViewController: UIViewController {
     }
     
     private func setupActions() {
+        moneyInputTextField.delegate = self
         selectCountryButton.addTarget(self, action: #selector(selectCountryButtonTapped), for: .touchUpInside)
     }
     
@@ -229,5 +267,11 @@ final class CurrencyViewController: UIViewController {
         actionSheet.addAction(cancel)
         
         present(actionSheet, animated: true, completion: nil)
+    }
+}
+
+extension CurrencyViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        viewModel.changeInputValue(textField.text)
     }
 }

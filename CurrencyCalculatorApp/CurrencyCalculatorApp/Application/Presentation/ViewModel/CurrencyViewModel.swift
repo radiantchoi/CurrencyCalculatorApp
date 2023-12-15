@@ -39,7 +39,7 @@ final class CurrencyViewModel {
         self.useCase = useCase
         
         bindCurrencyInfo()
-        fetchCurrencyInfo()
+//        fetchCurrencyInfo()
     }
     
     private func fetchCurrencyInfo() {
@@ -82,5 +82,9 @@ final class CurrencyViewModel {
         case .philippines:
             selectedCurrency = currencyInfo.toPHP
         }
+    }
+    
+    func changeInputValue(_ value: String?) {
+        print(value)
     }
 }
