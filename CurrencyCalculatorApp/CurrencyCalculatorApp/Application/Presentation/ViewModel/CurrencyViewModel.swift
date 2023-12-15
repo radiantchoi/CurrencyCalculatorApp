@@ -62,7 +62,7 @@ final class CurrencyViewModel {
             .sink(receiveCompletion: { [weak self] result in
                 switch result {
                 case .finished:
-                    print("Finished")
+                    LogPrinter.print(result)
                 case .failure(let error):
                     self?.fetchingError = error
                 }

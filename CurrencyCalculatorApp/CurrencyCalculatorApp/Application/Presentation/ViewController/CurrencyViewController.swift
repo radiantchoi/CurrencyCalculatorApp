@@ -261,9 +261,9 @@ final class CurrencyViewController: UIViewController {
     
     @objc func selectCountryButtonTapped() {
         let actionSheet = UIAlertController(title: "수취 국가 선택", message: nil, preferredStyle: .actionSheet)
-        let actions = Country.allCases.map { country in UIAlertAction(title: country.rawValue, style: .default) { [weak self] _ in
-            self?.viewModel.selectCountry(country)
-        } }
+        let actions = Country.allCases.map { country in
+            UIAlertAction(title: country.rawValue, style: .default) { [weak self] _ in self?.viewModel.selectCountry(country) }
+        }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
 
         actions.forEach { actionSheet.addAction($0) }

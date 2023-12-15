@@ -27,6 +27,7 @@
 		4F21725D2B2AED7300D065A2 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21725C2B2AED7300D065A2 /* Date+.swift */; };
 		4F21725F2B2C474500D065A2 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21725E2B2C474500D065A2 /* UITextField+.swift */; };
 		4F2172612B2CA5A500D065A2 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172602B2CA5A500D065A2 /* UIViewController+.swift */; };
+		4F2172642B2CA69000D065A2 /* LogPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172632B2CA69000D065A2 /* LogPrinter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		4F21725C2B2AED7300D065A2 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		4F21725E2B2C474500D065A2 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		4F2172602B2CA5A500D065A2 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		4F2172632B2CA69000D065A2 /* LogPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogPrinter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				4F1CF4102B29876E002F1499 /* Domain */,
 				4F1CF40F2B298766002F1499 /* Presentation */,
 				4F1CF40E2B29875E002F1499 /* Data */,
+				4F2172622B2CA66F00D065A2 /* Extension */,
 				4F2172382B2ABFA200D065A2 /* Utility */,
 			);
 			path = Application;
@@ -156,10 +159,7 @@
 		4F2172382B2ABFA200D065A2 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				4F21723B2B2ABFDE00D065A2 /* URL+.swift */,
-				4F21725C2B2AED7300D065A2 /* Date+.swift */,
-				4F21725E2B2C474500D065A2 /* UITextField+.swift */,
-				4F2172602B2CA5A500D065A2 /* UIViewController+.swift */,
+				4F2172632B2CA69000D065A2 /* LogPrinter.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -245,6 +245,17 @@
 			path = UseCase;
 			sourceTree = "<group>";
 		};
+		4F2172622B2CA66F00D065A2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4F21723B2B2ABFDE00D065A2 /* URL+.swift */,
+				4F21725C2B2AED7300D065A2 /* Date+.swift */,
+				4F21725E2B2C474500D065A2 /* UITextField+.swift */,
+				4F2172602B2CA5A500D065A2 /* UIViewController+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -319,6 +330,7 @@
 				4F2172522B2AD1C300D065A2 /* CurrencyViewModel.swift in Sources */,
 				4F21723E2B2AC08F00D065A2 /* FetchingError.swift in Sources */,
 				4F1CF3FD2B298472002F1499 /* CurrencyViewController.swift in Sources */,
+				4F2172642B2CA69000D065A2 /* LogPrinter.swift in Sources */,
 				4F2172552B2AD22F00D065A2 /* CurrencyRepository.swift in Sources */,
 				4F2172422B2AC50800D065A2 /* GetCurrencyEndpoint.swift in Sources */,
 				4F21725F2B2C474500D065A2 /* UITextField+.swift in Sources */,
