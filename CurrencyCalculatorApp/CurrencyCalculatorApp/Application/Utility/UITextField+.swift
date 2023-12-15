@@ -13,8 +13,10 @@ extension UITextField {
         
         let toolbar: UIToolbar = UIToolbar()
         toolbar.barStyle = .default
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
         toolbar.items = [
-            UIBarButtonItem(title: "Done", style: .done, target: onDone.target, action: onDone.action)
+            doneButton
         ]
         toolbar.sizeToFit()
         

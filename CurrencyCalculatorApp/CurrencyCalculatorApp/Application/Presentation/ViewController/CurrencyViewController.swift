@@ -136,15 +136,7 @@ final class CurrencyViewController: UIViewController {
         label.text = "USD"
         return label
     }()
-    
-    private lazy var moneyLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        label.text = "100 USD (수정예정)"
-        return label
-    }()
-    
+
     private lazy var resultLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -191,7 +183,6 @@ final class CurrencyViewController: UIViewController {
         contentStackView.addArrangedSubview(receivingCountryLabel)
         contentStackView.addArrangedSubview(currencyLabel)
         contentStackView.addArrangedSubview(dateLabel)
-        //        contentStackView.addArrangedSubview(moneyLabel)
         contentStackView.addArrangedSubview(moneyStackView)
         
         moneyStackView.addArrangedSubview(moneyInputTextField)
@@ -224,7 +215,7 @@ final class CurrencyViewController: UIViewController {
     }
     
     private func setupActions() {
-        moneyInputTextField.delegate = self
+        moneyInputTextField.addTarget(self, action: #selector(moneyInputTextFieldDidChanged), for: .editingChanged)
         selectCountryButton.addTarget(self, action: #selector(selectCountryButtonTapped), for: .touchUpInside)
     }
     
@@ -246,32 +237,34 @@ final class CurrencyViewController: UIViewController {
                 self?.currencyLabel.text = String(rate)
             }
             .store(in: &cancellables)
+        
+        viewModel.$sendingMoney
+            .sink { [weak self] money in
+                
+                self?.resultLabel.textColor = .black
+            }
+            .store(in: &cancellables)
     }
     
     @objc func selectCountryButtonTapped() {
         let actionSheet = UIAlertController(title: "수취 국가 선택", message: nil, preferredStyle: .actionSheet)
-        let selectKoreaAction = UIAlertAction(title: "대한민국", style: .default) { [weak self] _ in
-            self?.viewModel.selectCountry(.korea)
-        }
-        let selectJapanAction = UIAlertAction(title: "일본", style: .default) { [weak self] _ in
-            self?.viewModel.selectCountry(.japan)
-        }
-        let selectPhilippinesAction = UIAlertAction(title: "필리핀", style: .default) { [weak self] _ in
-            self?.viewModel.selectCountry(.philippines)
-        }
+        let actions = Country.allCases.map { country in UIAlertAction(title: country.rawValue, style: .default) { [weak self] _ in
+            self?.viewModel.selectCountry(country)
+        } }
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
-        actionSheet.addAction(selectKoreaAction)
-        actionSheet.addAction(selectJapanAction)
-        actionSheet.addAction(selectPhilippinesAction)
+
+        actions.forEach { actionSheet.addAction($0) }
         actionSheet.addAction(cancel)
         
         present(actionSheet, animated: true, completion: nil)
     }
-}
-
-extension CurrencyViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        viewModel.changeInputValue(textField.text)
+    
+    @objc func moneyInputTextFieldDidChanged() {
+        guard let number = viewModel.verifyInputValue(moneyInputTextField.text) else {
+            // 레이블 조정
+            return
+        }
+        
+        viewModel.changeInputValue(number)
     }
 }

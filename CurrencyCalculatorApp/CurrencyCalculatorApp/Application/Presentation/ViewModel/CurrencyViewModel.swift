@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 enum Country: String, CaseIterable {
-    case korea = "한국"
+    case korea = "대한민국"
     case japan = "일본"
     case philippines = "필리핀"
     
@@ -34,6 +34,7 @@ final class CurrencyViewModel {
     @Published private(set) var timestamp: String = "---"
     @Published private(set) var selectedCountry: Country = .korea
     @Published private(set) var selectedCurrency: Double = 0
+    @Published private(set) var sendingMoney: Double = 0
     
     init(useCase: CurrencyUseCase = CurrencyUseCaseImpl()) {
         self.useCase = useCase
@@ -84,7 +85,18 @@ final class CurrencyViewModel {
         }
     }
     
-    func changeInputValue(_ value: String?) {
-        print(value)
+    func verifyInputValue(_ value: String?) -> Double? {
+        guard let value,
+              let number = Double(value),
+              (0...10000) ~= number else {
+            return nil
+        }
+        
+        return number
+    }
+    
+    func changeInputValue(_ value: Double) {
+        let newSendingMoney = round(selectedCurrency * value * 100) / 100
+        sendingMoney = newSendingMoney
     }
 }
