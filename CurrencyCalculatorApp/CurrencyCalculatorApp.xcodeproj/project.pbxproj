@@ -133,8 +133,8 @@
 		4F1CF40F2B298766002F1499 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				4F2172502B2AD1BC00D065A2 /* ViewModel */,
 				4F1CF4112B298779002F1499 /* ViewController */,
+				4F2172502B2AD1BC00D065A2 /* ViewModel */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -142,9 +142,9 @@
 		4F1CF4102B29876E002F1499 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				4F21724F2B2ACD6600D065A2 /* Model */,
 				4F2172592B2ADC4400D065A2 /* UseCase */,
 				4F2172532B2AD22200D065A2 /* Repository */,
-				4F21724F2B2ACD6600D065A2 /* Model */,
 				4F21723F2B2AC4DF00D065A2 /* Error */,
 			);
 			path = Domain;
