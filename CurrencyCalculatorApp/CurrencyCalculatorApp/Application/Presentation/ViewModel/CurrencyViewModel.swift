@@ -28,6 +28,8 @@ enum Country: String, CaseIterable {
 struct Sending {
     let currency: String
     let amount: Double
+    
+    static let example = Sending(currency: "KRW", amount: 0)
 }
 
 final class CurrencyViewModel {
@@ -45,7 +47,7 @@ final class CurrencyViewModel {
     @Published private(set) var selectedCurrency: Double = 0
 
     private var inputMoney: Double = 0
-    @Published private(set) var sendingMoney: Sending = Sending(currency: "KRW", amount: 0)
+    @Published private(set) var sendingMoney: Sending = Sending.example
     
     @Published private(set) var fetchingError: FetchingError? = nil
     
