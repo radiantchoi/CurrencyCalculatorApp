@@ -28,6 +28,7 @@
 		4F21725F2B2C474500D065A2 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F21725E2B2C474500D065A2 /* UITextField+.swift */; };
 		4F2172612B2CA5A500D065A2 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172602B2CA5A500D065A2 /* UIViewController+.swift */; };
 		4F2172642B2CA69000D065A2 /* LogPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F2172632B2CA69000D065A2 /* LogPrinter.swift */; };
+		4F550D1E2B2F703B00C60930 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F550D1D2B2F703B00C60930 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		4F21725E2B2C474500D065A2 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		4F2172602B2CA5A500D065A2 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		4F2172632B2CA69000D065A2 /* LogPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogPrinter.swift; sourceTree = "<group>"; };
+		4F550D1D2B2F703B00C60930 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				4F2172632B2CA69000D065A2 /* LogPrinter.swift */,
+				4F550D1D2B2F703B00C60930 /* Constants.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				4F2172372B2ABF7900D065A2 /* Endpoint.swift in Sources */,
 				4F2172452B2AC53C00D065A2 /* BaseURL.swift in Sources */,
 				4F2172582B2AD27100D065A2 /* CurrencyRepositoryImpl.swift in Sources */,
+				4F550D1E2B2F703B00C60930 /* Constants.swift in Sources */,
 				4F2172612B2CA5A500D065A2 /* UIViewController+.swift in Sources */,
 				4F1CF3FB2B298472002F1499 /* SceneDelegate.swift in Sources */,
 				4F21725B2B2ADC5000D065A2 /* CurrencyUseCase.swift in Sources */,
