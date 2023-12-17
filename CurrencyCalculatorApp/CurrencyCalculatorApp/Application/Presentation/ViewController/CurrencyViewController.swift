@@ -239,7 +239,7 @@ final class CurrencyViewController: UIViewController {
         
         viewModel.$selectedCurrency
             .sink { [weak self] rate in
-                self?.currencyLabel.text = String(rate)
+                self?.currencyLabel.text = String(NumberProcessing.roundToTwo(rate))
             }
             .store(in: &cancellables)
         

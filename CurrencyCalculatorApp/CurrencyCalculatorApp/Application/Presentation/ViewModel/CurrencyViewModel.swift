@@ -104,7 +104,7 @@ final class CurrencyViewModel {
     
     func changeMoneyValue(_ value: Double) {
         inputMoney = value
-        let newSendingMoneyAmount = round(selectedCurrency * inputMoney * 100) / 100
+        let newSendingMoneyAmount = NumberProcessing.roundToTwo(selectedCurrency * inputMoney)
         sendingMoney = Sending(currency: selectedCountry.currency, amount: newSendingMoneyAmount)
     }
 }

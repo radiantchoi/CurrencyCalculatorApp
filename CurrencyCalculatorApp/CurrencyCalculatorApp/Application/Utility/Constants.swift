@@ -7,6 +7,13 @@
 
 import Foundation
 
+enum NumberProcessing {
+    static func roundToTwo(_ number: Double) -> Double {
+        let result = round(number * 100) / 100
+        return result
+    }
+}
+
 extension String {
     enum CurrencyViewControllerValues {
         static let placeholderValue = "---"
