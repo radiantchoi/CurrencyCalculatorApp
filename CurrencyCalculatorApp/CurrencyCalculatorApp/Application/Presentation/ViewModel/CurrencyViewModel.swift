@@ -99,13 +99,7 @@ final class CurrencyViewModel {
     }
     
     func verifyInputValue(_ value: String?) -> Double? {
-        guard let value,
-              let number = Double(value),
-              (0...10000) ~= number else {
-            return nil
-        }
-        
-        return number
+        useCase.verifyCurrencyValue(value)
     }
     
     func changeMoneyValue(_ value: Double) {
