@@ -21,9 +21,9 @@ enum GetCurrencyEndpoint: Endpoint {
     var parameters: HTTPRequestParameter? {
         return .queries(
             [
-                "access_key": "bd9bd75624cbe4e1cb66d7f69ad4f55a",
-                "currencies": "KRW,JPY,PHP",
-                "source": "USD",
+                "access_key": String.EndpointValues.accessKey,
+                "currencies": String.EndpointValues.targetCurrencies,
+                "source": String.EndpointValues.sourceCurrency,
             ]
         )
     }

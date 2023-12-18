@@ -36,6 +36,12 @@ extension String {
             "수취금액은 \(money.amount) \(money.currency) 입니다."
         }
     }
+    
+    enum EndpointValues {
+        static let accessKey = "bd9bd75624cbe4e1cb66d7f69ad4f55a"
+        static let targetCurrencies = "KRW,JPY,PHP"
+        static let sourceCurrency = "USD"
+    }
 }
 
 extension CGFloat {
