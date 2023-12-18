@@ -13,6 +13,14 @@ enum NumberProcessing {
         let result = round(number * 100) / 100
         return result
     }
+    
+    /// 숫자를 화폐 스타일로, 세 자리마다 구분점을 찍는 함수입니다.
+    static func convertToCurrency(_ number: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        
+        return formatter.string(from: number as NSNumber) ?? String(number)
+    }
 }
 
 extension String {
@@ -35,7 +43,8 @@ extension String {
         static let invalidTransactionText = "송금액이 바르지 않습니다."
         
         static func resultLabelText(_ money: Sending) -> String {
-            "수취금액은 \(money.amount) \(money.currency) 입니다."
+            let moneyString = NumberProcessing.convertToCurrency(money.amount)
+            return "수취금액은 \(moneyString) \(money.currency) 입니다."
         }
     }
     
