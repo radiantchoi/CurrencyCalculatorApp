@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FetchingError: Error, LocalizedError {
+enum FetchingError: Error, LocalizedError, Equatable {
     case failedToCreateURL
     case failedToCreateRequest
     case failedToGetHTTPResponse
@@ -36,4 +36,27 @@ enum FetchingError: Error, LocalizedError {
     }
     
     var recoverySuggestion: String? { nil }
+    
+    var localErrorIndex: Int {
+        switch self {
+        case .failedToCreateURL:
+            return 0
+        case .failedToCreateRequest:
+            return 1
+        case .failedToGetHTTPResponse:
+            return 2
+        case .failedToGetData:
+            return 3
+        case .invalidNetworkStatusCode(_):
+            return 4
+        case .failedToDecode:
+            return 5
+        case .unknownError(_):
+            return 6
+        }
+    }
+    
+    static func == (lhs: FetchingError, rhs: FetchingError) -> Bool {
+        return lhs.localErrorIndex == rhs.localErrorIndex
+    }
 }

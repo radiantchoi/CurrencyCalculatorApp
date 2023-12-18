@@ -9,9 +9,9 @@ import Combine
 import Foundation
 
 final class CurrencyRepositoryImpl: CurrencyRepository {
-    private let service: WebService
+    private let service: WebServiceable
     
-    init(service: WebService = WebService()) {
+    init(service: WebServiceable = WebService()) {
         self.service = service
     }
     

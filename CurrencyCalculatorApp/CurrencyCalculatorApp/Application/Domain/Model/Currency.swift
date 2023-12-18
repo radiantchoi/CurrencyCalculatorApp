@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Currency {
+struct Currency: Equatable {
     let timestamp: Date
     let toKRW: Double
     let toJPY: Double
