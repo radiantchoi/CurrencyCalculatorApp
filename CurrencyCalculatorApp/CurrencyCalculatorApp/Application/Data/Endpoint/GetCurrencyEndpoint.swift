@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 환율 정보를 가져오기 위해 필요한 정보를 지정하는 엔드포인트입니다.
 enum GetCurrencyEndpoint: Endpoint {
     case getRecentCurrency
     
@@ -21,9 +22,9 @@ enum GetCurrencyEndpoint: Endpoint {
     var parameters: HTTPRequestParameter? {
         return .queries(
             [
-                "access_key": "bd9bd75624cbe4e1cb66d7f69ad4f55a",
-                "currencies": "KRW,JPY,PHP",
-                "source": "USD",
+                "access_key": String.EndpointValues.accessKey,
+                "currencies": String.EndpointValues.targetCurrencies,
+                "source": String.EndpointValues.sourceCurrency,
             ]
         )
     }

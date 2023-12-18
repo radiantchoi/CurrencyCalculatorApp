@@ -11,16 +11,15 @@ struct CurrencyDTO: Decodable {
     let timestamp: Int
     let quotes: CurrencyQuotes
     
+    /// DTO를 모델로 변환하는 메서드입니다.
+    /// 소수 두 번째 자리 반올림은 아직 진행하지 않습니다.
     func toModel() -> Currency {
         let timestamp = Date(timeIntervalSince1970: TimeInterval(timestamp))
-        let krw = round(quotes.toKRW * 100) / 100
-        let jpy = round(quotes.toJPY * 100) / 100
-        let php = round(quotes.toPHP * 100) / 100
 
         return Currency(timestamp: timestamp,
-                        toKRW: krw,
-                        toJPY: jpy,
-                        toPHP: php)
+                        toKRW: quotes.toKRW,
+                        toJPY: quotes.toJPY,
+                        toPHP: quotes.toPHP)
     }
 }
 
