@@ -42,8 +42,13 @@ extension String {
         static let cancelSheetText = "취소"
         static let invalidTransactionText = "송금액이 바르지 않습니다."
         
-        static func resultLabelText(_ money: Sending) -> String {
-            let moneyString = NumberProcessing.convertToCurrency(money.amount)
+        static func currencyLabelText(_ selected: SelectedCurrency) -> String {
+            let amountString = NumberProcessing.convertToCurrency(NumberProcessing.roundToTwo(selected.amount))
+            return "\(amountString) \(selected.currency) / USD"
+        }
+        
+        static func resultLabelText(_ money: SelectedCurrency) -> String {
+            let moneyString = NumberProcessing.convertToCurrency(NumberProcessing.roundToTwo(money.amount))
             return "수취금액은 \(moneyString) \(money.currency) 입니다."
         }
     }
