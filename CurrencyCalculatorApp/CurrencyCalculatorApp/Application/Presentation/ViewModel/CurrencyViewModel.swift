@@ -14,7 +14,7 @@ enum Country: String, CaseIterable {
     case japan = "일본"
     case philippines = "필리핀"
     
-    var currency: String {
+    var currencyName: String {
         switch self {
         case .korea:
             return "KRW"
@@ -27,11 +27,11 @@ enum Country: String, CaseIterable {
 }
 
 /// 송금 금액 레이블에 화폐 단위와 금액을 기재하기 위한 타입입니다.
-struct Sending {
+struct SelectedCurrency {
     let currency: String
     let amount: Double
     
-    static let example = Sending(currency: "KRW", amount: 0)
+    static let example = SelectedCurrency(currency: "KRW", amount: 0)
 }
 
 final class CurrencyViewModel {
@@ -46,10 +46,10 @@ final class CurrencyViewModel {
             changeMoneyValue(inputMoney)
         }
     }
-    @Published private(set) var selectedCurrency: Double = 0
+    @Published private(set) var selectedCurrency: SelectedCurrency = SelectedCurrency.example
 
     private var inputMoney: Double = 0
-    @Published private(set) var sendingMoney: Sending = Sending.example
+    @Published private(set) var sendingMoney: SelectedCurrency = SelectedCurrency.example
     
     @Published private(set) var fetchingError: FetchingError? = nil
     
@@ -98,11 +98,11 @@ final class CurrencyViewModel {
     private func setSelectedCurrency(_ country: Country) {
         switch country {
         case .korea:
-            selectedCurrency = currencyInfo.toKRW
+            selectedCurrency = SelectedCurrency(currency: country.currencyName, amount: currencyInfo.toKRW)
         case .japan:
-            selectedCurrency = currencyInfo.toJPY
+            selectedCurrency = SelectedCurrency(currency: country.currencyName, amount: currencyInfo.toJPY)
         case .philippines:
-            selectedCurrency = currencyInfo.toPHP
+            selectedCurrency = SelectedCurrency(currency: country.currencyName, amount: currencyInfo.toPHP)
         }
     }
     
@@ -114,7 +114,7 @@ final class CurrencyViewModel {
     /// 송금 예정 금액을 변경하는 메서드입니다.
     func changeMoneyValue(_ value: Double) {
         inputMoney = value
-        let newSendingMoneyAmount = NumberProcessing.roundToTwo(selectedCurrency * inputMoney)
-        sendingMoney = Sending(currency: selectedCountry.currency, amount: newSendingMoneyAmount)
+        let newSendingMoneyAmount = selectedCurrency.amount * inputMoney
+        sendingMoney = SelectedCurrency(currency: selectedCountry.currencyName, amount: newSendingMoneyAmount)
     }
 }
