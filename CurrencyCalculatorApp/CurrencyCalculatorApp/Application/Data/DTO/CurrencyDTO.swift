@@ -11,6 +11,8 @@ struct CurrencyDTO: Decodable {
     let timestamp: Int
     let quotes: CurrencyQuotes
     
+    /// DTO를 모델로 변환하는 메서드입니다.
+    /// 소수 두 번째 자리 반올림은 아직 진행하지 않습니다.
     func toModel() -> Currency {
         let timestamp = Date(timeIntervalSince1970: TimeInterval(timestamp))
 

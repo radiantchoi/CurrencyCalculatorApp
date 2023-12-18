@@ -9,6 +9,7 @@ import Combine
 import UIKit
 
 final class CurrencyViewController: UIViewController {
+    /// 전체 뷰 제목 레이블입니다.
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -18,6 +19,7 @@ final class CurrencyViewController: UIViewController {
         return label
     }()
     
+    /// 좌측의 섹션 제목들을 묶는 스택 뷰입니다.
     private lazy var sectionStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +70,7 @@ final class CurrencyViewController: UIViewController {
         return label
     }()
     
+    /// 실제 표시되는 값들을 묶는 스택 뷰입니다.
     private lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +111,7 @@ final class CurrencyViewController: UIViewController {
         return label
     }()
     
+    /// 사용자 송금 란에서 텍스트 필드와 기준 화폐 레이블을 묶는 스택 뷰입니다.
     private lazy var moneyStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -136,7 +140,8 @@ final class CurrencyViewController: UIViewController {
         label.text = String.CurrencyViewControllerValues.moneyUnitLabelText
         return label
     }()
-
+    
+    /// 송금 예정 금액을 표시하는 레이블입니다.
     private lazy var resultLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -146,6 +151,7 @@ final class CurrencyViewController: UIViewController {
         return label
     }()
     
+    /// 국가 선택 액션 시트를 불러 오는 버튼입니다.
     private lazy var selectCountryButton: UIButton = {
         let button = UIButton(type: .roundedRect)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -167,6 +173,8 @@ final class CurrencyViewController: UIViewController {
         setupActions()
     }
     
+    /// 뷰에 컴포넌트들을 추가하는 레이블입니다.
+    /// 화면의 전체적 구성을 모두 수행합니다.
     private func setupView() {
         view.backgroundColor = .systemBackground
         view.addSubview(titleLabel)
@@ -219,11 +227,7 @@ final class CurrencyViewController: UIViewController {
         selectCountryButton.topAnchor.constraint(equalTo: resultLabel.bottomAnchor, constant: CGFloat.CurrencyViewControllerValues.selectCountryButtonTopConstant).isActive = true
     }
     
-    private func setupActions() {
-        moneyInputTextField.addTarget(self, action: #selector(moneyInputTextFieldDidChanged), for: .editingChanged)
-        selectCountryButton.addTarget(self, action: #selector(selectCountryButtonTapped), for: .touchUpInside)
-    }
-    
+    /// 뷰 모델의 Published 프로퍼티와 뷰 요소를 바인딩합니다.
     private func bindComponents() {
         viewModel.$timestamp
             .sink { [weak self] timestamp in
@@ -259,6 +263,13 @@ final class CurrencyViewController: UIViewController {
             .store(in: &cancellables)
     }
     
+    /// target-action 방식의 액션들을 설정합니다.
+    private func setupActions() {
+        moneyInputTextField.addTarget(self, action: #selector(moneyInputTextFieldDidChanged), for: .editingChanged)
+        selectCountryButton.addTarget(self, action: #selector(selectCountryButtonTapped), for: .touchUpInside)
+    }
+    
+    /// 국가 선택 버튼이 탭되었을 경우, 국가를 선택할 수 있는 액션 시트를 Present합니다.
     @objc func selectCountryButtonTapped() {
         let actionSheet = UIAlertController(title: String.CurrencyViewControllerValues.selectCountrySheetTitle, message: nil, preferredStyle: .actionSheet)
         let actions = Country.allCases.map { country in
@@ -272,6 +283,7 @@ final class CurrencyViewController: UIViewController {
         present(actionSheet, animated: true, completion: nil)
     }
     
+    /// 텍스트 필드의 값이 바뀔 때마다, 해당 입력값을 검증하고 계산하여 레이블에 반영합니다.
     @objc func moneyInputTextFieldDidChanged() {
         guard let number = viewModel.verifyInputValue(moneyInputTextField.text) else {
             resultLabel.text = String.CurrencyViewControllerValues.invalidTransactionText
@@ -282,6 +294,7 @@ final class CurrencyViewController: UIViewController {
         viewModel.changeMoneyValue(number)
     }
     
+    /// 키보드 바깥의 영역을 탭했을 경우, 키보드가 내려가게 합니다.
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

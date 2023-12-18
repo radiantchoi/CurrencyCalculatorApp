@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// 환율 정보를 가져오기 위해 필요한 정보를 지정하는 엔드포인트입니다.
 enum GetCurrencyEndpoint: Endpoint {
     case getRecentCurrency
     

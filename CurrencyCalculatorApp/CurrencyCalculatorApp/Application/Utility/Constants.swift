@@ -8,6 +8,7 @@
 import Foundation
 
 enum NumberProcessing {
+    /// 소수 두 번째 자리에서 반올림하는 함수입니다.
     static func roundToTwo(_ number: Double) -> Double {
         let result = round(number * 100) / 100
         return result
@@ -15,6 +16,7 @@ enum NumberProcessing {
 }
 
 extension String {
+    /// 뷰 컨트롤러에서 사용하는 고정 String값들입니다.
     enum CurrencyViewControllerValues {
         static let placeholderValue = "---"
         static let titleLabelText = "환율 계산"
@@ -37,6 +39,7 @@ extension String {
         }
     }
     
+    /// GetCurrencyEndpoint에서 사용하는 고정 String값들입니다.
     enum EndpointValues {
         static let accessKey = "bd9bd75624cbe4e1cb66d7f69ad4f55a"
         static let targetCurrencies = "KRW,JPY,PHP"
@@ -45,6 +48,7 @@ extension String {
 }
 
 extension CGFloat {
+    /// 뷰 컨트롤러 UI 요소에 사용되는 고정 숫자값입니다.
     enum CurrencyViewControllerValues {
         static let titleLabelFontSize: CGFloat = 48
         static let stackViewVerticalSpacing: CGFloat = 16
