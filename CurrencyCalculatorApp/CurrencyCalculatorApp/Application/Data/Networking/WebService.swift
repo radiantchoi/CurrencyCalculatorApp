@@ -53,3 +53,19 @@ struct WebService: WebServiceable {
             .eraseToAnyPublisher()
     }
 }
+
+extension WebService {
+    private func call(_ request: URLRequest) async throws -> Data {
+        let (data, response) = try await session.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw FetchingError.failedToGetHTTPResponse
+        }
+        
+        guard (200...399).contains(httpResponse.statusCode) else {
+            throw FetchingError.invalidNetworkStatusCode(code: httpResponse.statusCode)
+        }
+        
+        return data
+    }
+}
